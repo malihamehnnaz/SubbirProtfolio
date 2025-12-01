@@ -1,0 +1,40 @@
+{
+  "placeholderImages": [
+    {
+      "id": "profile-hero",
+      "description": "Portrait of a smiling woman with dark hair",
+      "imageUrl": "https://i.ibb.co/6JRD0k4n/Gemini-Generated-Image-ua18noua18noua18.png",
+      "imageHint": "woman portrait"
+    },
+    {
+      "id": "profile-about",
+      "description": "Profile picture for about section, woman in casual attire",
+      "imageUrl": "https://i.ibb.co/6JRD0k4n/Gemini-Generated-Image-ua18noua18noua18.png",
+      "imageHint": "woman portrait"
+    },
+    {
+      "id": "project-sales-dashboard",
+      "description": "A dashboard showing charts and graphs for sales analytics.",
+      "imageUrl": "https://images.unsplash.com/photo-1748609160056-7b95f30041f0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxkYXNoYm9hcmQlMjBhbmFseXRpY3N8ZW58MHx8fHwxNzYyNDExMjQ1fDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "dashboard analytics"
+    },
+    {
+      "id": "project-churn-prediction",
+      "description": "A chart showing customer churn prediction data.",
+      "imageUrl": "https://images.unsplash.com/photo-1744782211816-c5224434614f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxkYXRhJTIwY2hhcnR8ZW58MHx8fHwxNzYyMzU4MjIyfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "data chart"
+    },
+    {
+      "id": "project-code-review",
+      "description": "An illustration of code snippets and review comments.",
+      "imageUrl": "https://images.unsplash.com/photo-1726250873166-814c1f2cb74b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxjb2RlJTIwcmV2aWV3fGVufDB8fHx8MTc2MjQyNDcyOHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "code review"
+    },
+    {
+      "id": "project-idp",
+      "description": "Illustration of document processing and data extraction.",
+      "imageUrl": "https://images.unsplash.com/photo-1718043648145-21d3a51d8f8a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxkb2N1bWVudCUyMHByb2Nlc3Npbmd8ZW58MHx8fHwxNzYyNTc5MTgyfDA&ixlib=rb-4.1.0&q=80&w=108о0",
+      "imageHint": "document processing"
+    }
+  ]
+}
