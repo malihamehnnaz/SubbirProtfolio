@@ -33,7 +33,7 @@ export function ContactForm() {
 
   function onSubmit(values: z.infer<typeof formSchema>) {
   // send to backend API. Use production backend by default, allow overriding with NEXT_PUBLIC_EMAIL_API_URL
-  const apiBase = process.env.NEXT_PUBLIC_EMAIL_API_URL ?? "https://portfolio-backend-nzd7.onrender.com";
+  const apiBase = process.env.NEXT_PUBLIC_EMAIL_API_URL ?? "https://subbir-backend.onrender.com";
     setLoading(true);
     fetch(`${apiBase}/send`, {
       method: "POST",
