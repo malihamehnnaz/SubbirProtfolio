@@ -9,6 +9,7 @@ import SkillsSection from '@/components/sections/skills';
 import ExperienceSection from '@/components/sections/experience';
 import EducationSection from '@/components/sections/education';
 import LanguageProficiencySection from '@/components/sections/language-proficiency';
+import ProfessionalMembershipSection from '@/components/sections/professional-membership';
 import ProjectsSection from '@/components/sections/projects';
 import ContactSection from '@/components/sections/contact';
 import Footer from '@/components/footer';
@@ -51,6 +52,9 @@ export default function Home() {
           </div>
           <div id="language-proficiency" className="scroll-mt-24">
             <LanguageProficiencySection />
+          </div>
+          <div id="professional-membership" className="scroll-mt-24">
+            <ProfessionalMembershipSection />
           </div>
           <div id="contact" className="scroll-mt-24">
             <ContactSection />

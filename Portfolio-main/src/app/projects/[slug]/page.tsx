@@ -9,6 +9,7 @@ import {
   Sun, Droplets, Wind, Leaf, Lock, Camera, Battery,
   Cpu, Globe, Clock, Award, Star, Heart, Music,
   Coffee, Utensils, Dumbbell, Tv, Gamepad, MapPin,
+  BarChart3, PieChart, TrendingUp,
 } from 'lucide-react';
 import {
   Carousel,
@@ -170,33 +171,26 @@ export default async function ProjectPage({ params }: Params) {
 
   return (
     <main className="w-full min-h-screen bg-background relative z-10">
-      <div className="container mx-auto py-8 md:py-12 lg:py-16 px-4 sm:px-6 md:px-8 max-w-6xl space-y-8 md:space-y-12 relative z-10">
+      <div className="container mx-auto py-4 md:py-6 px-4 sm:px-6 md:px-8 max-w-6xl space-y-4 md:space-y-6 relative z-10">
 
       {/* --------------------------------------------- */}
-      {/* HEADER SECTION – title, location, type */}
+      {/* HEADER - Title + Key Stats in One Section */}
       {/* --------------------------------------------- */}
-      <section className="relative z-10 space-y-4 md:space-y-6 border-b-2 border-gray-300 dark:border-gray-700 pb-8">
-        <div className="w-full">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight text-black dark:text-white leading-tight break-words">
-            {project.title}
-          </h1>
-        </div>
-        <div className="flex flex-col sm:flex-row flex-wrap gap-6 text-gray-700 dark:text-gray-300 text-base md:text-lg font-medium">
-          {project.location && (
-            <div className="flex items-center gap-3">
-              <div className="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-lg">
-                <Building2 style={{ width: '28px', height: '28px' }} className="text-blue-700 dark:text-blue-400" strokeWidth={1.5} />
-              </div>
-              <span>{project.location}</span>
+      <section className="relative z-10">
+        <h1 className="text-xl sm:text-2xl md:text-3xl font-bold tracking-tight text-black dark:text-white mb-3">
+          {project.title}
+        </h1>
+        <div className="flex items-center gap-3 text-xs md:text-sm text-gray-600 dark:text-gray-400 mb-4">
+          {project.type && (
+            <div className="flex items-center gap-1.5">
+              <Building2 className="w-3.5 h-3.5" />
+              <span>{project.type}</span>
             </div>
           )}
-
-          {project.type && (
-            <div className="flex items-center gap-3">
-              <div className="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-lg">
-                <Layers style={{ width: '28px', height: '28px' }} className="text-blue-700 dark:text-blue-400" strokeWidth={1.5} />
-              </div>
-              <span>{project.type}</span>
+          {project.location && (
+            <div className="flex items-center gap-1.5">
+              <MapPin className="w-3.5 h-3.5" />
+              <span>{project.location}</span>
             </div>
           )}
         </div>
@@ -216,186 +210,183 @@ export default async function ProjectPage({ params }: Params) {
 
                 return (
                   <CarouselItem key={i}>
-                    <div className="rounded-xl overflow-hidden border-2 border-gray-300 dark:border-gray-700 shadow-lg">
-                      <div className="relative w-full h-56 sm:h-72 md:h-96 lg:h-[500px]">
+                    <div className="rounded-lg overflow-hidden border border-gray-200 dark:border-gray-800">
+                      <div className="relative w-full h-48 sm:h-56 md:h-72 lg:h-80">
                         <Image 
                           src={resolved.src} 
                           alt={resolved.description || project.title} 
                           fill 
-                          className="object-contain bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900" 
+                          className="object-contain bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800" 
                           priority={i === 0}
                         />
                       </div>
                     </div>
                     {caption && (
-                      <p className="mt-3 text-sm md:text-base text-gray-600 dark:text-gray-400 text-center font-medium">{caption}</p>
+                      <p className="mt-2 text-xs text-gray-500 dark:text-gray-400 text-center">{caption}</p>
                     )}
                   </CarouselItem>
                 );
               })}
             </CarouselContent>
-            <CarouselPrevious className="left-4 h-12 w-12 md:h-14 md:w-14" />
-            <CarouselNext className="right-4 h-12 w-12 md:h-14 md:w-14" />
+            <CarouselPrevious className="left-4 h-8 w-8 md:h-10 md:w-10" />
+            <CarouselNext className="right-4 h-8 w-8 md:h-10 md:w-10" />
           </Carousel>
         </section>
       ) : null}
 
       {/* --------------------------------------------- */}
-      {/* STATISTICS GRID */}
-      {/* --------------------------------------------- */}
-      <section className="relative z-10 grid grid-cols-2 md:grid-cols-5 gap-2 md:gap-3">
-        <StatCard icon={<Building2 style={{ width: '24px', height: '24px' }} className="text-blue-600 dark:text-blue-400" strokeWidth={1.5} />} label="Project Type" value={project.type || '-'} />
-        <StatCard icon={<Layers style={{ width: '24px', height: '24px' }} className="text-blue-600 dark:text-blue-400" strokeWidth={1.5} />} label="Floors" value={project.floors || '-'} />
-        <StatCard icon={<Ruler style={{ width: '24px', height: '24px' }} className="text-blue-600 dark:text-blue-400" strokeWidth={1.5} />} label="Area" value={project.area || '-'} />
-        <StatCard icon={<Car style={{ width: '24px', height: '24px' }} className="text-blue-600 dark:text-blue-400" strokeWidth={1.5} />} label="Parking" value={project.parking || '-'} />
-        {project.stat5Label && (
-          <StatCard 
-            icon={
-              (() => {
-                const Stat5Icon = getStat5Icon(project.stat5Label);
-                return <Stat5Icon style={{ width: '24px', height: '24px' }} className="text-blue-600 dark:text-blue-400" strokeWidth={1.5} />;
-              })()
-            } 
-            label={project.stat5Label} 
-            value={project.stat5Value || '-'} 
-          />
-        )}
-      </section>
-
-      {/* --------------------------------------------- */}
-      {/* OVERVIEW */}
+      {/* KEY PROJECT STATS - Below Images */}
       {/* --------------------------------------------- */}
       <section className="relative z-10">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4 md:mb-6 text-black dark:text-white">Project Overview</h2>
-        <p className="text-gray-800 dark:text-gray-200 leading-relaxed text-base md:text-lg whitespace-pre-wrap">{project.description}</p>
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2">
+          {project.area && (
+            <div className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 p-2.5 rounded-lg border border-blue-200 dark:border-blue-800/40 hover:shadow-lg transition-all group">
+              <div className="flex items-center gap-1.5 mb-1.5">
+                <div className="p-1 bg-blue-500 dark:bg-blue-600 rounded group-hover:scale-110 transition-transform">
+                  <Ruler className="w-3 h-3 text-white" strokeWidth={2.5} />
+                </div>
+                <p className="text-[10px] font-medium text-blue-700 dark:text-blue-300">Area</p>
+              </div>
+              <p className="text-xs font-bold text-blue-900 dark:text-blue-100 leading-tight">{project.area}</p>
+            </div>
+          )}
+          {project.floors && (
+            <div className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 p-2.5 rounded-lg border border-blue-200 dark:border-blue-800/40 hover:shadow-lg transition-all group">
+              <div className="flex items-center gap-1.5 mb-1.5">
+                <div className="p-1 bg-blue-500 dark:bg-blue-600 rounded group-hover:scale-110 transition-transform">
+                  <Layers className="w-3 h-3 text-white" strokeWidth={2.5} />
+                </div>
+                <p className="text-[10px] font-medium text-blue-700 dark:text-blue-300">Floors</p>
+              </div>
+              <p className="text-xs font-bold text-blue-900 dark:text-blue-100 leading-tight">{project.floors}</p>
+            </div>
+          )}
+          {project.parking && (
+            <div className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 p-2.5 rounded-lg border border-blue-200 dark:border-blue-800/40 hover:shadow-lg transition-all group">
+              <div className="flex items-center gap-1.5 mb-1.5">
+                <div className="p-1 bg-blue-500 dark:bg-blue-600 rounded group-hover:scale-110 transition-transform">
+                  <Car className="w-3 h-3 text-white" strokeWidth={2.5} />
+                </div>
+                <p className="text-[10px] font-medium text-blue-700 dark:text-blue-300">Parking</p>
+              </div>
+              <p className="text-xs font-bold text-blue-900 dark:text-blue-100 leading-tight">{project.parking}</p>
+            </div>
+          )}
+          {project.stat5Label && project.stat5Value && (
+            <div className="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 p-2.5 rounded-lg border border-blue-200 dark:border-blue-800/40 hover:shadow-lg transition-all group">
+              <div className="flex items-center gap-1.5 mb-1.5">
+                <div className="p-1 bg-blue-500 dark:bg-blue-600 rounded group-hover:scale-110 transition-transform">
+                  {(() => {
+                    const Stat5Icon = getStat5Icon(project.stat5Label);
+                    return <Stat5Icon className="w-3 h-3 text-white" strokeWidth={2.5} />;
+                  })()}
+                </div>
+                <p className="text-[10px] font-medium text-blue-700 dark:text-blue-300">{project.stat5Label}</p>
+              </div>
+              <p className="text-xs font-bold text-blue-900 dark:text-blue-100 leading-tight">{project.stat5Value}</p>
+            </div>
+          )}
+        </div>
       </section>
 
       {/* --------------------------------------------- */}
-      {/* DETAILS WITH ICONS */}
+      {/* PROJECT DETAILS */}
       {/* --------------------------------------------- */}
-      {project.details && (
-        <section className="relative z-10">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 md:mb-6 text-black dark:text-white">Detailed Information</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* left: summary text */}
-            <div className="md:col-span-2 bg-gray-50 dark:bg-gray-900/50 p-6 md:p-8 rounded-xl border-2 border-gray-300 dark:border-gray-700 shadow-md leading-relaxed whitespace-pre-line text-base md:text-lg text-gray-800 dark:text-gray-200">
-              {parseDetails(project.details).summary || project.details}
-            </div>
-
-            {/* right: key/value pairs with icons */}
-            <div className="bg-gray-50 dark:bg-gray-900/50 p-6 md:p-8 rounded-xl border-2 border-gray-300 dark:border-gray-700 shadow-md">
-              <ul className="flex flex-col gap-5 md:gap-6">
-                {parseDetails(project.details).pairs.map(([k, v], i) => {
-                  const iconKey = k.toLowerCase();
-                  const Icon = DetailKeyIconMap[iconKey] || Building2;
-                  return (
-                    <li key={i} className="flex items-start gap-3 md:gap-4">
-                      <div className="flex-none mt-1">
-                        <div className="w-14 h-14 rounded-xl bg-blue-200 dark:bg-blue-900/40 flex items-center justify-center flex-shrink-0">
-                          <Icon style={{ width: '24px', height: '24px' }} className="text-blue-700 dark:text-blue-400" strokeWidth={1.5} />
-                        </div>
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <p className="text-xs md:text-sm text-gray-600 dark:text-gray-400 font-bold uppercase tracking-wide">{k}</p>
-                        <p className="text-base md:text-lg font-semibold text-black dark:text-white break-words mt-1">{v}</p>
-                      </div>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-          </div>
-        </section>
-      )}
+      <section className="relative z-10">
+        <h2 className="text-sm md:text-base font-bold mb-2 text-black dark:text-white">Project Details</h2>
+        <div className="bg-gray-50 dark:bg-gray-900/50 p-3 rounded-lg border border-gray-200 dark:border-gray-800 text-xs md:text-sm text-gray-700 dark:text-gray-300 leading-relaxed whitespace-pre-line">
+          {project.details || project.description}
+        </div>
+      </section>
 
       {/* --------------------------------------------- */}
-      {/* FEATURES LIST */}
+      {/* TECHNICAL SPECIFICATIONS WITH ICONS */}
+      {/* --------------------------------------------- */}
+      <ProjectSpecifications projectSlug={project.title.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')} />
+
+      {/* --------------------------------------------- */}
+      {/* KEY FEATURES */}
       {/* --------------------------------------------- */}
       {project.features?.length ? (
         <section className="relative z-10">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 md:mb-8 text-black dark:text-white">Key Features</h2>
-          <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+          <h2 className="text-sm md:text-base font-bold mb-3 text-black dark:text-white flex items-center gap-2">
+            <CheckCircle2 className="w-4 h-4 text-green-600" strokeWidth={2.5} />
+            Key Features
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2">
             {project.features.map((f: any, i: number) => {
               const FeatureIcon = getFeatureIcon(f);
               return (
-                <li key={i} className="flex items-start gap-4 p-5 md:p-6 rounded-xl border-2 border-gray-300 dark:border-gray-700 bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-blue-900/30 dark:to-indigo-900/20 hover:shadow-lg transition-all">
-                  <div className="flex-none flex-shrink-0 mt-1">
-                    <div className="w-14 h-14 rounded-xl bg-blue-200 dark:bg-blue-900/40 flex items-center justify-center">
-                      <FeatureIcon style={{ width: '28px', height: '28px' }} className="text-blue-700 dark:text-blue-400" strokeWidth={1.5} />
-                    </div>
+                <div key={i} className="flex items-start gap-2 p-2.5 rounded-lg bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800/50 dark:to-gray-900/50 border border-gray-200 dark:border-gray-700 hover:border-blue-400 dark:hover:border-blue-600 hover:shadow-md transition-all group">
+                  <div className="p-1.5 bg-blue-100 dark:bg-blue-900/40 rounded-lg group-hover:bg-blue-500 dark:group-hover:bg-blue-600 transition-colors">
+                    <FeatureIcon className="w-3.5 h-3.5 text-blue-600 dark:text-blue-400 group-hover:text-white flex-shrink-0" strokeWidth={2} />
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-base md:text-lg font-semibold text-black dark:text-white leading-snug">{f}</p>
-                  </div>
-                </li>
+                  <p className="text-xs md:text-sm text-gray-700 dark:text-gray-300 font-medium leading-relaxed">{f}</p>
+                </div>
               );
             })}
-          </ul>
+          </div>
         </section>
       ) : null}
 
       {/* --------------------------------------------- */}
-      {/* COMPREHENSIVE TECHNICAL SPECIFICATIONS */}
+      {/* AWARDS & ACHIEVEMENTS */}
       {/* --------------------------------------------- */}
-      <section className="relative z-10">
-        <h2 className="text-3xl md:text-4xl font-bold mb-6 md:mb-8 text-black dark:text-white">Technical Specifications</h2>
-        <ProjectSpecifications projectSlug={slug} />
-      </section>
-
-      {/* --------------------------------------------- */}
-      {/* AWARDS SECTION */}
-      {/* --------------------------------------------- */}
-      {project.awards?.length ? (
+      {(project as any).awards?.length ? (
         <section className="relative z-10">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 md:mb-8 text-black dark:text-white">Awards & Achievements</h2>
-          <ul className="space-y-4 md:space-y-6">
-            {project.awards.map((award: any, i: number) => {
+          <h2 className="text-lg md:text-xl font-bold mb-4 text-black dark:text-white flex items-center gap-2">
+            <Award className="w-5 h-5 text-amber-600" strokeWidth={2.5} />
+            Awards & Achievements
+          </h2>
+          <div className="space-y-3">
+            {(project as any).awards.map((award: any, i: number) => {
               const isString = typeof award === 'string';
               const title = isString ? award : award.title;
               const year = isString ? null : award.year;
               const organization = isString ? null : award.organization;
               
               return (
-                <li key={i} className="flex items-start gap-4 md:gap-6 p-5 md:p-6 rounded-xl border-2 border-gray-300 dark:border-gray-700 bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20">
-                  <div className="flex-none flex-shrink-0">
-                    <div className="w-12 h-12 rounded-full bg-amber-200 dark:bg-amber-900/40 flex items-center justify-center">
-                      <Award style={{ width: '24px', height: '24px' }} className="text-amber-700 dark:text-amber-400" strokeWidth={1.5} />
-                    </div>
+                <div key={i} className="flex items-start gap-3 p-4 rounded-lg bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 border border-amber-200 dark:border-amber-800/40 hover:shadow-lg transition-all group">
+                  <div className="p-2.5 bg-amber-100 dark:bg-amber-900/40 rounded-full group-hover:bg-amber-500 dark:group-hover:bg-amber-600 transition-colors">
+                    <Award className="w-5 h-5 text-amber-600 dark:text-amber-400 group-hover:text-white flex-shrink-0" strokeWidth={2.5} />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-base md:text-lg font-semibold text-black dark:text-white break-words">{title}</p>
+                    <p className="text-sm md:text-base font-bold text-amber-900 dark:text-amber-100">{title}</p>
                     {(organization || year) && (
-                      <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4 mt-2 text-xs md:text-sm text-gray-600 dark:text-gray-400">
+                      <div className="flex flex-wrap items-center gap-3 mt-1.5">
                         {organization && (
-                          <span className="flex items-center gap-2">
-                            <Building2 style={{ width: '16px', height: '16px' }} strokeWidth={2} />
+                          <span className="flex items-center gap-1.5 text-xs text-amber-700 dark:text-amber-300">
+                            <Building2 className="w-3.5 h-3.5" strokeWidth={2} />
                             {organization}
                           </span>
                         )}
                         {year && (
-                          <span className="flex items-center gap-2">
-                            <Calendar style={{ width: '16px', height: '16px' }} strokeWidth={2} />
+                          <span className="flex items-center gap-1.5 text-xs text-amber-700 dark:text-amber-300">
+                            <Calendar className="w-3.5 h-3.5" strokeWidth={2} />
                             {year}
                           </span>
                         )}
                       </div>
                     )}
                   </div>
-                </li>
+                </div>
               );
             })}
-          </ul>
+          </div>
         </section>
       ) : null}
 
       {/* --------------------------------------------- */}
-      {/* EDUCATION SECTION */}
+      {/* EDUCATION & CERTIFICATIONS */}
       {/* --------------------------------------------- */}
-      {project.education?.length ? (
+      {(project as any).education?.length ? (
         <section className="relative z-10">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 md:mb-8 text-black dark:text-white">Education & Certifications</h2>
-          <ul className="space-y-4 md:space-y-6">
-            {project.education.map((edu: any, i: number) => {
+          <h2 className="text-lg md:text-xl font-bold mb-4 text-black dark:text-white flex items-center gap-2">
+            <Star className="w-5 h-5 text-emerald-600" strokeWidth={2.5} />
+            Education & Certifications
+          </h2>
+          <div className="space-y-3">
+            {(project as any).education.map((edu: any, i: number) => {
               const isString = typeof edu === 'string';
               const title = isString ? edu : edu.title;
               const institution = isString ? null : edu.institution;
@@ -403,52 +394,58 @@ export default async function ProjectPage({ params }: Params) {
               const description = isString ? null : edu.description;
               
               return (
-                <li key={i} className="flex items-start gap-4 md:gap-6 p-5 md:p-6 rounded-xl border-2 border-gray-300 dark:border-gray-700 bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/20">
-                  <div className="flex-none flex-shrink-0">
-                    <div className="w-12 h-12 rounded-full bg-emerald-200 dark:bg-emerald-900/40 flex items-center justify-center">
-                      <Star style={{ width: '24px', height: '24px' }} className="text-emerald-700 dark:text-emerald-400" strokeWidth={1.5} />
-                    </div>
+                <div key={i} className="flex items-start gap-3 p-4 rounded-lg bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/20 border border-emerald-200 dark:border-emerald-800/40 hover:shadow-lg transition-all group">
+                  <div className="p-2.5 bg-emerald-100 dark:bg-emerald-900/40 rounded-full group-hover:bg-emerald-500 dark:group-hover:bg-emerald-600 transition-colors">
+                    <Star className="w-5 h-5 text-emerald-600 dark:text-emerald-400 group-hover:text-white flex-shrink-0" strokeWidth={2.5} />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-base md:text-lg font-semibold text-black dark:text-white break-words">{title}</p>
+                    <p className="text-sm md:text-base font-bold text-emerald-900 dark:text-emerald-100">{title}</p>
                     {description && (
-                      <p className="text-sm md:text-base text-gray-700 dark:text-gray-300 mt-1">{description}</p>
+                      <p className="text-xs md:text-sm text-emerald-700 dark:text-emerald-300 mt-1">{description}</p>
                     )}
                     {(institution || year) && (
-                      <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4 mt-2 text-xs md:text-sm text-gray-600 dark:text-gray-400">
+                      <div className="flex flex-wrap items-center gap-3 mt-1.5">
                         {institution && (
-                          <span className="flex items-center gap-2">
-                            <Building2 style={{ width: '16px', height: '16px' }} strokeWidth={2} />
+                          <span className="flex items-center gap-1.5 text-xs text-emerald-700 dark:text-emerald-300">
+                            <Building2 className="w-3.5 h-3.5" strokeWidth={2} />
                             {institution}
                           </span>
                         )}
                         {year && (
-                          <span className="flex items-center gap-2">
-                            <Calendar style={{ width: '16px', height: '16px' }} strokeWidth={2} />
+                          <span className="flex items-center gap-1.5 text-xs text-emerald-700 dark:text-emerald-300">
+                            <Calendar className="w-3.5 h-3.5" strokeWidth={2} />
                             {year}
                           </span>
                         )}
                       </div>
                     )}
                   </div>
-                </li>
+                </div>
               );
             })}
-          </ul>
+          </div>
         </section>
       ) : null}
 
       {/* --------------------------------------------- */}
       {/* ACTION BUTTONS */}
       {/* --------------------------------------------- */}
-      <section className="relative z-10 flex flex-col sm:flex-row gap-4 md:gap-6 pt-8 border-t-2 border-gray-300 dark:border-gray-700">
-        {project.githubUrl && project.githubUrl !== '#' && (
-          <Link href={project.githubUrl} target="_blank" className="inline-flex items-center justify-center gap-3 px-6 md:px-8 py-3 md:py-4 border-2 border-gray-400 dark:border-gray-600 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-800 transition text-base md:text-lg font-semibold text-black dark:text-white">View Repository</Link>
-        )}
-        {project.liveUrl && project.liveUrl !== '#' && (
-          <Link href={project.liveUrl} target="_blank" className="inline-flex items-center justify-center gap-3 px-6 md:px-8 py-3 md:py-4 border-2 border-gray-400 dark:border-gray-600 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-800 transition text-base md:text-lg font-semibold text-black dark:text-white">View Live</Link>
-        )}
-      </section>
+      {(project.githubUrl && project.githubUrl !== '#') || (project.liveUrl && project.liveUrl !== '#') ? (
+        <section className="relative z-10 flex flex-wrap gap-3 pt-6 border-t border-gray-200 dark:border-gray-800">
+          {project.githubUrl && project.githubUrl !== '#' && (
+            <Link href={project.githubUrl} target="_blank" className="inline-flex items-center gap-2 px-5 py-2.5 border-2 border-gray-300 dark:border-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 hover:border-gray-400 dark:hover:border-gray-600 transition-all text-sm font-semibold text-gray-900 dark:text-white group">
+              <Globe className="w-4 h-4 group-hover:scale-110 transition-transform" strokeWidth={2.5} />
+              View Repository
+            </Link>
+          )}
+          {project.liveUrl && project.liveUrl !== '#' && (
+            <Link href={project.liveUrl} target="_blank" className="inline-flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white rounded-lg shadow-md hover:shadow-xl transition-all text-sm font-semibold group">
+              <Zap className="w-4 h-4 group-hover:scale-110 transition-transform" strokeWidth={2.5} />
+              View Live
+            </Link>
+          )}
+        </section>
+      ) : null}
       </div>
     </main>
   );
@@ -459,10 +456,10 @@ export default async function ProjectPage({ params }: Params) {
 // -----------------------------------------
 function StatCard({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) {
   return (
-    <div className="p-3 md:p-4 rounded-lg border-2 border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900/50 shadow-sm flex flex-col items-start gap-2 hover:shadow-md transition-shadow">
+    <div className="p-2.5 md:p-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900/50 shadow-sm flex flex-col items-start gap-1.5 hover:shadow-md transition-shadow">
       <div>{icon}</div>
-      <p className="text-xs md:text-sm text-gray-700 dark:text-gray-400 font-semibold uppercase tracking-wide leading-tight">{label}</p>
-      <p className="text-base md:text-lg font-bold text-black dark:text-white">{value}</p>
+      <p className="text-[10px] md:text-xs text-gray-700 dark:text-gray-400 font-semibold uppercase tracking-wide leading-tight">{label}</p>
+      <p className="text-sm md:text-base font-bold text-black dark:text-white">{value}</p>
     </div>
   );
 }

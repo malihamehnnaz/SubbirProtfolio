@@ -15,8 +15,7 @@ export default function LanguageProficiencySection() {
         { label: 'Speaking', value: '65' },
         { label: 'Writing', value: '81' },
       ],
-      note: 'Overall Score: 72',
-      reportCode: 'Score Report Code: 26d63cI93B'
+      note: 'Score Report Code: 26d63cI93B',
     },
     {
       title: 'IELTS General',
@@ -27,8 +26,7 @@ export default function LanguageProficiencySection() {
         { label: 'Speaking', value: '6' },
         { label: 'Writing', value: '6' },
       ],
-      note: 'Overall Score: 6.5',
-      reportCode: 'TRF Number: 21BD026799HARM050G'
+      note: 'TRF Number: 21BD026799HARM050G',
     }
   ];
 
@@ -36,7 +34,7 @@ export default function LanguageProficiencySection() {
   <section id="language-proficiency" className="w-full py-8 md:py-12">
       <div className="container mx-auto max-w-4xl px-4 lg:px-8">
         <AnimatedDiv className="flex flex-col items-center text-center mb-12">
-          <h2 className="text-lg font-bold tracking-tight sm:text-xl section-header">Language Proficiency</h2>
+          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl section-header">Language Proficiency</h2>
           <p className="mt-3 text-lg text-muted-foreground max-w-2xl">Scores for major English proficiency tests.</p>
         </AnimatedDiv>
 
@@ -50,7 +48,7 @@ export default function LanguageProficiencySection() {
                     <div className="text-3xl font-bold text-foreground">{test.overall}</div>
                   </div>
                   {test.note && <p className="mt-2 text-sm font-medium text-foreground">{test.note}</p>}
-                  {test.reportCode && <p className="mt-1 text-xs text-muted-foreground font-mono">{test.reportCode}</p>}
+                  {(test as any).reportCode && <p className="mt-1 text-xs text-muted-foreground font-mono">{(test as any).reportCode}</p>}
                 </CardHeader>
                 <CardContent className="px-6 pb-6 pt-4">
                   <div className="grid grid-cols-2 gap-4">

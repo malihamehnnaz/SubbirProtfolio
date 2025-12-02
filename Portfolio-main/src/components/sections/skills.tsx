@@ -6,10 +6,14 @@ import { AnimatedDiv } from '../animated-div';
 import { Card, CardContent } from '../ui/card';
 
 const skillCategories = [
-  { name: "AI & Machine Learning", short: 'AI' },
-  { name: "Programming & Frameworks", short: 'DEV' },
-  { name: "Data Science & Analytics", short: 'DATA' },
-  { name: "MLOps & Integration", short: 'OPS' },
+  { name: "Fire Fighting, Prevention & Rescue Training", short: 'SAFETY' },
+  { name: "ETABS", short: 'PM' },
+  { name: "Procore", short: 'DESIGN' },
+  { name: "Total Station Operation", short: 'CAD' },
+  { name: "Primavera P6 & Microsoft Project", short: 'CIVIL' },
+  { name: "Auto CAD inventor", short: 'SURVEY' },
+  { name: "Concrete Mix Design", short: 'AI' },
+  { name: "Use of LLM", short: 'LLM' },
 ];
 
 const skillStyles: Record<string, { color: string; bg?: string }> = {
@@ -38,21 +42,20 @@ export default function SkillsSection() {
   <section id="skills" className="w-full py-8 md:py-12">
       <div className="container mx-auto max-w-6xl px-4 lg:px-8">
         <AnimatedDiv className="flex flex-col items-center text-center mb-8">
-          <h2 className="text-lg font-bold tracking-tight sm:text-xl">Technical Skills</h2>
+          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl section-header">Technical Skills</h2>
           <p className="mt-2 text-sm text-muted-foreground max-w-2xl">A curated set of my technical strengths</p>
         </AnimatedDiv>
 
-  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {skillCategories.map((category, idx) => (
             <AnimatedDiv key={category.name} delay={`${idx * 80}ms`}>
               <Card className="group h-full shadow-sm rounded-xl transition-shadow duration-200 hover:shadow-md">
                 <CardContent className="p-4 border-l-4 border-primary/30 dark:border-primary/40"> 
-                  <div className="flex items-center justify-between mb-3">
+                  <div className="mb-3">
                     <h3 className="text-lg font-semibold">{category.name}</h3>
-                    <div className="text-sm text-muted-foreground">{skills.filter(s => s.category === category.name).length}</div>
                   </div>
 
-                  <div className="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-2">
+                  <div className="mt-2 space-y-2">
                     {skills
                       .filter((s) => s.category === category.name)
                       .map((skill) => {
@@ -60,9 +63,8 @@ export default function SkillsSection() {
                         return (
                           <div
                             key={skill.name}
-                            className="inline-flex items-center gap-3 px-3 py-1 rounded-full bg-muted/10 dark:bg-card/40 text-sm text-foreground/90 hover:bg-primary/5 hover:shadow-sm hover:translate-y-0.5 transition duration-150 cursor-pointer"
+                            className="flex items-center gap-3 px-3 py-1 rounded-full bg-muted/10 dark:bg-card/40 text-sm text-foreground/90 hover:bg-primary/5 hover:shadow-sm hover:translate-y-0.5 transition duration-150 cursor-pointer"
                           >
-                            <span className="flex-shrink-0 w-2 h-2 rounded-full bg-primary" />
                             <span className="leading-tight">{skill.name}</span>
                           </div>
                         );

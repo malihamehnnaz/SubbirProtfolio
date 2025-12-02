@@ -9,16 +9,27 @@ import { Github, ExternalLink } from 'lucide-react';
 import Image from 'next/image';
 import { AnimatedDiv } from './animated-div';
 import { useRouter } from 'next/navigation';
+import { extendedProjectData, companyLogos } from '@/lib/projects-extended';
 
 type ProjectCardProps = {
   project: {
     title: string;
     description: string;
-    tags: string[];
-    githubUrl: string;
-    liveUrl: string;
-    image?: string; // unused in simplified card
-  assignment?: string[] | null;
+    tags?: string[];
+    githubUrl?: string;
+    liveUrl?: string;
+    image?: string;
+    assignment?: string[] | null;
+    location?: string;
+    type?: string;
+    floors?: string;
+    area?: string;
+    parking?: string;
+    stat5Label?: string;
+    stat5Value?: string;
+    details?: string;
+    features?: string[];
+    images?: string[];
   };
   index: number;
 };
@@ -56,6 +67,11 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
     .replace(/\s+/g, '-')
     .replace(/-+/g, '-');
 
+  // Get company logo from extended data
+  const extended = extendedProjectData[slug];
+  const companyName = extended?.company;
+  const companyLogo = companyName ? companyLogos[companyName] : undefined;
+
   // Basic 3D tilt state
   const [tiltStyle, setTiltStyle] = useState({ transform: 'perspective(600px) rotateX(0deg) rotateY(0deg)' });
 
@@ -79,14 +95,14 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
 
   return (
     <div className="group relative">
-      {/* Animated shadow border: subtle always-on glow, brighter + animated on hover (more visible in dark mode) */}
-      <div className="pointer-events-none absolute -inset-[1.5px] rounded-2xl opacity-30 dark:opacity-60 group-hover:opacity-100 transition-opacity duration-700">
-        <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-primary/25 to-primary/25 dark:from-primary/40 dark:to-primary/40 via-transparent group-hover:animate-[spin_12s_linear_infinite]" />
-        <div className="absolute inset-0 rounded-2xl blur-[4px] dark:blur-[6px] bg-primary/15 dark:bg-primary/25" />
+      {/* Animated shadow border: enhanced glow effect in dark mode */}
+      <div className="pointer-events-none absolute -inset-[2px] rounded-2xl opacity-40 dark:opacity-80 group-hover:opacity-100 transition-opacity duration-700">
+        <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-primary/30 to-primary/30 dark:from-primary/60 dark:to-primary/60 via-transparent group-hover:animate-[spin_12s_linear_infinite]" />
+        <div className="absolute inset-0 rounded-2xl blur-[6px] dark:blur-[10px] bg-primary/20 dark:bg-primary/40" />
       </div>
   <AnimatedDiv
     delay={delay}
-  className="relative w-full h-full flex flex-col overflow-hidden rounded-2xl border border-border/50 bg-card px-6 pt-6 pb-6 shadow-sm transition-all duration-500 ease-out will-change-transform hover:shadow-lg hover:border-primary/40 hover:-translate-y-1 hover:scale-[1.02] focus-within:ring-1 focus-within:ring-primary/40 cursor-pointer"
+  className="relative w-full h-full flex flex-col overflow-hidden rounded-2xl border border-border/50 dark:border-primary/30 bg-card px-6 pt-6 pb-6 shadow-sm dark:shadow-lg dark:shadow-primary/10 transition-all duration-500 ease-out will-change-transform hover:shadow-lg dark:hover:shadow-xl dark:hover:shadow-primary/20 hover:border-primary/40 dark:hover:border-primary/60 hover:-translate-y-1 hover:scale-[1.02] focus-within:ring-1 focus-within:ring-primary/40 dark:focus-within:ring-primary/60 cursor-pointer"
     onClick={() => router.push(`/projects/${slug}`)}
   >
       {/* 3D image (click to open project details) */}
@@ -140,13 +156,13 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
               {tag}
             </Badge>
           ))}
-          {project.tags.length > 4 && (
+          {project.tags && project.tags.length > 4 && (
             <Badge
               variant="outline"
               className="transform-gpu text-[11px] border-primary/30 text-foreground/80 hover:text-foreground hover:border-primary/50 transition-all duration-300 ease-out"
               style={{ transitionDelay: `${4 * 40}ms` }}
             >
-              +{project.tags.length - 4}
+              +{project.tags && project.tags.length - 4}
             </Badge>
           )}
         </div>
@@ -158,7 +174,7 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
       {showFooter && (
         <div className="mt-2 flex items-center justify-between">
           <div className="flex items-center gap-4 text-sm text-muted-foreground">
-            {hasGithub && (
+            {hasGithub && project.githubUrl && (
               <Link
                 href={project.githubUrl}
                 target="_blank"
@@ -172,13 +188,20 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
               </Link>
             )}
           </div>
-          {hasLive && (
+          {hasLive && project.liveUrl && (
             <Button asChild variant="outline" size="sm" className="gap-1">
               <Link href={project.liveUrl} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>
                 Live <ExternalLink className="h-3.5 w-3.5" />
               </Link>
             </Button>
           )}
+        </div>
+      )}
+
+      {/* Bottom-right company logo */}
+      {companyLogo && (
+        <div className="absolute bottom-3 right-3 opacity-70 hover:opacity-100 transition-opacity duration-300">
+          <Image src={companyLogo} alt={companyName || 'Company'} width={40} height={40} className="object-contain drop-shadow-lg" />
         </div>
       )}
 

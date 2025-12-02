@@ -13,7 +13,10 @@ const navLinks = [
   { href: '#about', label: 'About' },
   { href: '#experience', label: 'Experience' },
   { href: '#projects', label: 'Projects' },
+  { href: '#education', label: 'Education' },
   { href: '#skills', label: 'Skills' },
+  { href: '#language-proficiency', label: 'Language' },
+  { href: '#professional-membership', label: 'Membership' },
   { href: '#contact', label: 'Contact' },
 ];
 
@@ -84,7 +87,7 @@ export default function Header() {
         </nav>
         <div className="flex items-center gap-4">
             <Button asChild variant="outline" className="hidden md:flex">
-                <a href="/MALIHA-MEHNAZ-Resume.pdf" download="Maliha_Mehnaz_Resume.pdf">
+                <a href="/MD SUBBIR BIN HARUN-RESUME-AUSTRALIA.pdf" download="MD_SUBBIR_BIN_HARUN_Resume.pdf">
                   <Download className="mr-2 h-4 w-4" />
                   Download Resume
                 </a>
@@ -121,7 +124,7 @@ export default function Header() {
                     </nav>
                     <div className='mt-auto'>
             <Button asChild className="mt-4 w-full">
-              <a href="/MALIHA-MEHNAZ-Resume.pdf" download="Maliha_Mehnaz_Resume.pdf" onClick={() => setMobileMenuOpen(false)}>
+              <a href="/MD SUBBIR BIN HARUN-RESUME-AUSTRALIA.pdf" download="MD_SUBBIR_BIN_HARUN_Resume.pdf" onClick={() => setMobileMenuOpen(false)}>
                 <Download className="mr-2 h-4 w-4" />
                 Download Resume
               </a>

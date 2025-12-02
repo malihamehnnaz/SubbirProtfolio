@@ -13,14 +13,17 @@ export default function HeroSection() {
     const heroImage = PlaceHolderImages.find((img) => img.id === 'profile-hero');
     const publicProfileSrc = '/my-picture.jpeg';
     const [hasPublicImage, setHasPublicImage] = useState(false);
-    const [publicProfileSrcV, setPublicProfileSrcV] = useState(publicProfileSrc);
+    const [publicProfileSrcV, setPublicProfileSrcV] = useState(`${publicProfileSrc}?v=${Date.now()}`);
 
     useEffect(() => {
         // Probe the public URL to see if the user has added their image to /public/my-picture.jpeg
         let mounted = true;
         const img = new window.Image();
         img.onload = () => {
-            if (mounted) setHasPublicImage(true);
+            if (mounted) {
+                setHasPublicImage(true);
+                setPublicProfileSrcV(`${publicProfileSrc}?v=${Date.now()}`);
+            }
         };
         img.onerror = () => {
             if (mounted) setHasPublicImage(false);
@@ -63,13 +66,13 @@ export default function HeroSection() {
       <div className="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
                     <AnimatedDiv className="relative flex lg:hidden justify-center" delay="0.4s">
-                        <div className="relative w-[230px] h-[230px] sm:w-[280px] sm:h-[280px] overflow-hidden rounded-full bg-secondary/5 p-1">
+                        <div className="relative w-[200px] h-[200px] sm:w-[260px] sm:h-[260px] overflow-hidden rounded-full bg-secondary/5 p-1">
                             {hasPublicImage ? (
                                 <Image
                                     src={publicProfileSrcV}
                                     alt="Profile picture"
                                     fill
-                                    className="rounded-full shadow-2xl border-4 border-primary/20 transform scale-105 sm:scale-108"
+                                    className="rounded-full shadow-2xl border-4 border-primary/20 transform scale-70 sm:scale-70"
                                     priority
                                     style={{ objectFit: 'cover', transformOrigin: 'center' }}
                                 />
@@ -80,7 +83,7 @@ export default function HeroSection() {
                                                                                             src={heroImage.imageUrl}
                                                                                             alt={heroImage.description}
                                                                                             fill
-                                                                                            className="rounded-full shadow-2xl border-4 border-primary/20 transform scale-105 sm:scale-110"
+                                                                                            className="rounded-full shadow-2xl border-4 border-primary/20 transform scale-90 sm:scale-90"
                                                                                             data-ai-hint={heroImage.imageHint}
                                                                                             priority
                                                                                             style={{ objectFit: 'cover', transformOrigin: 'center' }}
@@ -113,23 +116,23 @@ maintaining client satisfaction ||
                 </p>
             </AnimatedDiv>
             
-                        <AnimatedDiv delay="0.4s" className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-5 w-full max-w-7xl">
+                        <AnimatedDiv delay="0.4s" className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-4 w-full">
                                 <a
                                     href="mailto:subbirharun0510@gmail.com"
                                     aria-label="Send email to subbirharun0510@gmail.com"
-                                    className="flex flex-col items-center justify-center gap-3 px-5 py-7 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 border border-slate-300 dark:border-slate-600 transition-all shadow-sm"
+                                    className="flex flex-col items-center justify-center gap-2 px-10 py-5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 border-2 border-slate-300 dark:border-slate-600 transition-all shadow-sm min-w-0"
                                 >
-                                    <Mail className="h-8 w-8 text-slate-700 dark:text-slate-300" />
-                                    <span className="text-xs font-medium text-slate-900 dark:text-slate-100 text-center break-words line-clamp-2">subbirharun0510@gmail.com</span>
+                                    <Mail className="h-6 w-6 text-slate-700 dark:text-slate-300 flex-shrink-0" />
+                                    <span className="text-xs font-medium text-slate-900 dark:text-slate-100 text-center whitespace-nowrap">subbirharun0510@gmail.com</span>
                                 </a>
 
                                 <a
                                     href="tel:+8801816214706"
                                     aria-label="Call phone number +880 1816214706"
-                                    className="flex flex-col items-center justify-center gap-3 px-7 py-7 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 border border-slate-300 dark:border-slate-600 transition-all shadow-sm"
+                                    className="flex flex-col items-center justify-center gap-2 px-10 py-5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 border-2 border-slate-300 dark:border-slate-600 transition-all shadow-sm min-w-0"
                                 >
-                                    <Phone className="h-8 w-8 text-slate-700 dark:text-slate-300" />
-                                    <span className="text-sm font-medium text-slate-900 dark:text-slate-100 text-center">+880 1816214706</span>
+                                    <Phone className="h-6 w-6 text-slate-700 dark:text-slate-300 flex-shrink-0" />
+                                    <span className="text-xs font-medium text-slate-900 dark:text-slate-100 text-center whitespace-nowrap">+880 1816214706</span>
                                 </a>
 
                                 <a
@@ -137,21 +140,21 @@ maintaining client satisfaction ||
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     aria-label="Open LinkedIn profile"
-                                    className="flex flex-col items-center justify-center gap-3 px-7 py-7 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 border border-slate-300 dark:border-slate-600 transition-all shadow-sm"
+                                    className="flex flex-col items-center justify-center gap-2 px-10 py-5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 border-2 border-slate-300 dark:border-slate-600 transition-all shadow-sm min-w-0"
                                 >
-                                    <Linkedin className="h-8 w-8 text-slate-700 dark:text-slate-300" />
-                                    <span className="text-sm font-medium text-slate-900 dark:text-slate-100 text-center">/in/subbirbinharun</span>
+                                    <Linkedin className="h-6 w-6 text-slate-700 dark:text-slate-300 flex-shrink-0" />
+                                    <span className="text-xs font-medium text-slate-900 dark:text-slate-100 text-center whitespace-nowrap">/in/subbirbinharun</span>
                                 </a>
           </AnimatedDiv>
           </div>
                     <AnimatedDiv className="relative hidden lg:flex justify-center" delay="0.4s">
-                        <div className="relative w-[420px] h-[420px] overflow-hidden rounded-full bg-secondary/5 p-1">
+                        <div className="relative w-[380px] h-[380px] overflow-hidden rounded-full bg-secondary/5 p-1">
                             {hasPublicImage ? (
                                 <Image
                                     src={publicProfileSrcV}
                                     alt="Profile picture"
                                     fill
-                                    className="rounded-full shadow-2xl border-4 border-primary/20 transform scale-105"
+                                    className="rounded-full shadow-2xl border-4 border-primary/20 transform scale-70"
                                     priority
                                     style={{ objectFit: 'cover', transformOrigin: 'center' }}
                                 />
@@ -162,7 +165,7 @@ maintaining client satisfaction ||
                                             src={heroImage.imageUrl}
                                             alt={heroImage.description}
                                             fill
-                                            className="rounded-full shadow-2xl border-4 border-primary/20 transform scale-105"
+                                            className="rounded-full shadow-2xl border-4 border-primary/20 transform scale-90"
                                             data-ai-hint={heroImage.imageHint}
                                             priority
                                             style={{ objectFit: 'cover', transformOrigin: 'center' }}
