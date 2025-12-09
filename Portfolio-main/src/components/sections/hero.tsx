@@ -127,12 +127,12 @@ maintaining client satisfaction ||
                                 </a>
 
                                 <a
-                                    href="tel:+8801816214706"
-                                    aria-label="Call phone number +880 1816214706"
+                                    href="tel:+610423057885"
+                                    aria-label="Call phone number +610423057885"
                                     className="flex flex-col items-center justify-center gap-2 px-10 py-5 rounded-lg bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 border-2 border-slate-300 dark:border-slate-600 transition-all shadow-sm min-w-0"
                                 >
                                     <Phone className="h-6 w-6 text-slate-700 dark:text-slate-300 flex-shrink-0" />
-                                    <span className="text-xs font-medium text-slate-900 dark:text-slate-100 text-center whitespace-nowrap">+880 1816214706</span>
+                                    <span className="text-xs font-medium text-slate-900 dark:text-slate-100 text-center whitespace-nowrap">+610423057885</span>
                                 </a>
 
                                 <a
