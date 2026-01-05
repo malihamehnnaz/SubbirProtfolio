@@ -41,57 +41,6 @@ export function ProjectSpecifications({ projectSlug }: ProjectSpecificationsProp
 
   return (
     <div className="space-y-6">
-      {/* Financial Overview */}
-      {(data.landValue || data.constructionCost || data.sellValue) && (
-        <Card>
-          <CardHeader>
-            <CardTitle>Financial Overview</CardTitle>
-                     </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {data.landValue && (
-                <div className="flex items-start gap-3">
-                  <div className="p-2 bg-blue-100 dark:bg-blue-900/40 rounded-lg">
-                    <svg className="w-5 h-5 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                    </svg>
-                  </div>
-                  <div>
-                    <p className="text-xs text-muted-foreground">Land Value</p>
-                    <p className="text-lg font-bold">{data.landValue}</p>
-                  </div>
-                </div>
-              )}
-              {data.constructionCost && (
-                <div className="flex items-start gap-3">
-                  <div className="p-2 bg-orange-100 dark:bg-orange-900/40 rounded-lg">
-                    <svg className="w-5 h-5 text-orange-600 dark:text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                    </svg>
-                  </div>
-                  <div>
-                    <p className="text-xs text-muted-foreground">Construction Cost</p>
-                    <p className="text-lg font-bold">{data.constructionCost}</p>
-                  </div>
-                </div>
-              )}
-              {data.sellValue && (
-                <div className="flex items-start gap-3">
-                  <div className="p-2 bg-green-100 dark:bg-green-900/40 rounded-lg">
-                    <svg className="w-5 h-5 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <p className="text-xs text-muted-foreground">Sell Value</p>
-                    <p className="text-lg font-bold">{data.sellValue}</p>
-                  </div>
-                </div>
-              )}
-            </div>
-          </CardContent>
-        </Card>
-      )}
 
       {/* Project Management */}
       {(data.duration || data.subContractors || data.laborCount) && (
