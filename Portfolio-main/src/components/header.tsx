@@ -87,7 +87,7 @@ export default function Header() {
         </nav>
         <div className="flex items-center gap-4">
             <Button asChild variant="outline" className="hidden md:flex">
-                <a href="/MD SUBBIR BIN HARUN-RESUME-AUSTRALIA.pdf" download="MD_SUBBIR_BIN_HARUN_Resume.pdf">
+                <a href="/MD SUBBIR BIN HARUN-RESUME-PROFESSIONAL.pdf" download="MD_SUBBIR_BIN_HARUN_Resume.pdf">
                   <Download className="mr-2 h-4 w-4" />
                   Download Resume
                 </a>
