@@ -17,7 +17,7 @@ export const experiences = [
     role: "ASSISTANT GENERAL MANAGER",
     company: "INNSTAR LIMITED",
     companyDetail: "Banani, Dhaka, Bangladesh",
-    period: "12/05/2022 – Present",
+    period: "12/05/2022 – 02/12/2025",
     companyUrl: "https://www.innstarbd.com/",
     logo: "/logos/innstar.jpg",
   description: "3 Years 7 Months\n\nLed USD 111.37M commercial RCC developments including a 32‑storey + 5‑basement LEED Platinum certified building | 59,462 sqm | 42 subcontractors | 400+ workforce | achieved 7% time & 4% cost savings.",
@@ -469,11 +469,6 @@ export const projects = [
   }
 ];
 
-export const companies = [
-  { name: 'Dexian', logo: '/logos/dexian.png' },
-  { name: 'Nitol Motors', logo: '/logos/Nitol-Niloy logo.png' },
-  { name: 'Golden Harvest', logo: '/logos/golden-harvest.jpeg' },
-];
 
 export const professionalMemberships = [
   {
